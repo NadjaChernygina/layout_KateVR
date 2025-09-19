@@ -5,7 +5,7 @@ https://NadjaChernygina.github.io/layout_KateVR/
 
 # Sport Landing Page
 
-This is a landing page for Creative Bakery.
+This is a landing page for Sound Systems.
 
 ## How to run
 
