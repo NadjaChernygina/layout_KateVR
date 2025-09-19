@@ -4,3 +4,67 @@
     #{$_property}: $_toValue;
   }
 }
+
+@mixin container-max {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+@mixin flex-between-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin on-tablet {
+  @media (min-width: $table-min-width) {
+    @content;
+  }
+}
+
+@mixin on-desktop {
+  @media (min-width: $desktop-min-width) {
+    @content;
+  }
+}
+
+@mixin responsive-font($tag) {
+  font-size: map-get($text-font-sizes, $tag);
+
+  @media (max-width: 768px) {
+    font-size: map-get($text-font-sizes-tablet, $tag);
+  }
+
+  @media (max-width: 480px) {
+    font-size: map-get($text-font-sizes-mobile, $tag);
+  }
+}
+
+@mixin button-styles($variant) {
+  $colors: map-get($button-variants, $variant);
+
+  border: 2px solid map-get($colors, border);
+  background-color: map-get($colors, bg);
+  color: map-get($colors, text);
+
+  &:hover {
+    border-color: map-get($colors, hover-border);
+    background-color: map-get($colors, hover-bg);
+    color: map-get($colors, hover-text);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: map-get($colors, focus-border);
+    background-color: map-get($colors, focus-bg);
+    color: map-get($colors, focus-text);
+  }
+
+  &:disabled {
+    border-color: map-get($colors, disabled-border);
+    background-color: map-get($colors, disabled-bg);
+    color: map-get($colors, disabled-text);
+    cursor: not-allowed;
+    transform: none;
+  }
+}

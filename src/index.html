@@ -6,14 +6,378 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
-    <title>Title</title>
+    <link rel="icon" type="image/png"
+      sizes="32x32" href="images/icons/favicon-32x32.jpg" />
+    <link rel="icon" type="image/png"
+      sizes="16x16" href="images/icons/favicon-16x16.jpg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sometype+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <title>Sound System</title>
     <link
       rel="stylesheet"
       href="./styles/main.scss"
     />
   </head>
   <body>
-    <h1>Hello Mate Academy</h1>
+    <div class="wrapper">
+      <header class="header">
+        <div class="container">
+          <a href="#" class="header__logo">
+            <img src="images/logo.svg" alt="Saund">
+          </a>
+
+          <div class="header__right">
+            <div class="header__links">
+              <ul class="header__links--lang">
+                <li><a href="#">EN</a></li>
+                <li><a href="#">UA</a></li>
+              </ul>
+              <button class="button button--secondary" type="button">Buy</button>
+            </div>
+
+            <button class="header__burger" aria-label="Menu">
+              <span></span>
+              <span></span>
+            </button>
+
+            <nav class="header__nav">
+              <div class="header__nav--wrapper">
+                <a href="#" class="header__logo">
+                  <img src="images/logo.svg" alt="Saund">
+                </a>
+
+                <ul class="header__menu">
+                  <li><a href="#about">About</a></li>
+                  <li><a href="#services">Services</a></li>
+                  <li><a href="#portfolio">Portfolio</a></li>
+                  <li><a href="#contact">Contact</a></li>
+                </ul>
+
+                <div class="header__links">
+                  <ul class="header__links--lang">
+                    <li><a href="#">EN</a></li>
+                    <li><a href="#">UA</a></li>
+                  </ul>
+
+                  <button class="button button--secondary" type="button">Buy</button>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <!-- 1. Banner -->
+        <section class="banner">
+          <div class="container">
+            <div class="banner__text">
+              <h1 class="banner__title">Futuristic Wireless Speaker</h1>
+              <p class="banner__description">
+                Luna’s performance is balanced and smooth in all frequency ranges which makes the music both naturally pleasant and distinctly more layered.
+              </p>
+            </div>
+            <div class="banner__image">
+              <img
+                src="images/banner.jpg"
+                srcset="
+                  images/banner.jpg 1x,
+                  images/banner@2x.jpg 2x
+                "
+                alt="Banner image"
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Featured blocks -->
+        <section class="featuredblocks">
+          <div class="container">
+            <div class="featuredblocks__item">
+              <img src="images/icons/icon1.svg" alt="alt"
+                class="featuredblocks__icon">
+              <h3 class="featuredblocks__title">Futuristic Design</h3>
+              <p class="featuredblocks__description">To give Luna a truly flawless look, we specifically picked aircraft grade aluminum as its material and adopted both three-dimensional stretch-bending technology and a high precision cold forging technique.</p>
+            </div>
+            <div class="featuredblocks__item">
+              <img src="images/icons/icon2.svg" alt="alt"
+                class="featuredblocks__icon">
+              <h3 class="featuredblocks__title">Tweeter Speaker System</h3>
+              <p class="featuredblocks__description">To deliver a more layered sound performance better than a sole full-range speaker, our team equipped Luna with one more tweeter speaker responsible for high-frequency sound independently.</p>
+            </div>
+            <div class="featuredblocks__item">
+              <img src="images/icons/icon3.svg" alt="alt"
+                class="featuredblocks__icon">
+              <h3 class="featuredblocks__title">Multiroom System</h3>
+              <p class="featuredblocks__description">Luna is natively compatible with your home Wi-Fi. Set up multiple speakers in different rooms to expand your music experience into the entire house.  </p>
+            </div>
+            <div class="featuredblocks__item">
+              <img src="images/icons/icon4.svg" alt="alt"
+                class="featuredblocks__icon">
+              <h3 class="featuredblocks__title">Intuitive Lighting System</h3>
+              <p class="featuredblocks__description">An intuitive user interface allows you to adjust the hue and saturation of color for lighting that fits any mood and situation.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Fullscreen image -->
+        <section class="fullimage">
+          <img src="images/fullwidth.jpg" alt="Full width section"
+            class="fullimage__img">
+        </section>
+
+        <!-- 4. About Us -->
+        <section class="about">
+          <div class="container">
+            <article class="about__item">
+              <h2 class="about__title">DESIGNED FOR THE FUTURE</h2>
+              <div class="about__media">
+                <img
+                  src="images/about2.jpg"
+                  srcset="images/about2.jpg 1x, images/about2@2x.jpg 2x"
+                  alt="About us image 1"
+                  class="about__img"
+                />
+              </div>
+              <p class="about__text">
+                In 2014, a group of geeky industrial designers, engineering veterans and acoustic experts formed crazybaby. This is a bunch of passionate people who are crazy enough to think they can challenge the industry with disruptive audio products.
+              </p>
+              <a href="#" class="about__link">See more about us</a>
+            </article>
+
+            <article class="about__item about__item--reverse">
+              <h2 class="about__title">DESIGNED FOR THE FUTURE</h2>
+              <div class="about__media">
+                <img
+                  src="images/about1.jpg"
+                  srcset="images/about1.jpg 1x, images/about1@2x.jpg 2x"
+                  alt="About us image 2"
+                  class="about__img"
+                />
+              </div>
+              <p class="about__text">
+                Luna Eye is to the essence of this innovative light and audio system. It comprises an independent tweeter speaker, a light guiding component, a dome and a ring ornament.
+              </p>
+              <a href="#" class="about__link">See more about us</a>
+            </article>
+          </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials" aria-labelledby="testimonials-title">
+          <div class="testimonials__container">
+            <header class="testimonials__header">
+              <h2 id="testimonials-title" class="testimonials__title">Testimonials</h2>
+            </header>
+
+            <div class="testimonials__viewport"
+                role="region"
+                aria-roledescription="carousel"
+                aria-label="Client testimonials"
+                aria-live="polite">
+
+              <div class="testimonials__track">
+                <article class="testimonials__slide is-active" role="group"
+                  aria-roledescription="slide" aria-hidden="false">
+                  <figure class="testimonials__card" tabindex="-1">
+                    <blockquote class="testimonials__quote">It really took me by surprise honestly to have such full beautiful sound that coming out of this small compact device. And with the brush aluminum surface, it feels so familiar. Like my iPhone.</blockquote>
+                    <figcaption class="testimonials__meta">
+                      <img class="testimonials__avatar" src="images/client1.jpg"
+                        alt="Anna, Product Manager">
+                      <div class="testimonials__person">
+                        <span class="testimonials__name">Anna</span>
+                        <span class="testimonials__role">Product Manager</span>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </article>
+
+                <article class="testimonials__slide" role="group"
+                  aria-roledescription="slide" aria-hidden="true">
+                  <figure class="testimonials__card" tabindex="-1">
+                    <blockquote class="testimonials__quote">It really took me by surprise honestly to have such full beautiful sound that coming out of this small compact device. And with the brush aluminum surface.</blockquote>
+                    <figcaption class="testimonials__meta">
+                      <img class="testimonials__avatar" src="images/client1.jpg"
+                        alt="Mark, CTO">
+                      <div class="testimonials__person">
+                        <span class="testimonials__name">Mark</span>
+                        <span class="testimonials__role">CTO</span>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </article>
+
+                <!-- add more .testimonials__slide here -->
+              </div>
+
+              <!-- bullets will be auto-generated here if empty -->
+              <div class="testimonials__pagination" role="tablist"
+                aria-label="Select testimonial">
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+
+
+        <!-- Features -->
+        <section class="features">
+          <div class="container">
+            <header class="features__header">
+              <h2 id="features-title" class="features__title">Features</h2>
+            </header>
+          </div>
+
+          <div class="container">
+            <!-- Lists block: becomes a slider on tablet/mobile -->
+            <div class="features__lists">
+              <div class="features__viewport" aria-live="polite"
+                aria-roledescription="carousel">
+                <div class="features__track">
+                  <section class="features__list-slide" role="group"
+                    aria-roledescription="slide">
+                    <h3 class="features__list-title">Connectivity</h3>
+                    <ul class="features__list">
+                      <li>Hands-Free Wireless Audio</li>
+                      <li>Bluetooth 4.0 LE</li>
+                      <li>Wi-Fi 2.4 GHz (802.11 b/g/n)</li>
+                      <li>Smart Multiroom System Set Up</li>
+                      <li>Party Mode on 6.0+ and above</li>
+                      <li>Multiroom Speaker Network</li>
+                    </ul>
+                  </section>
+
+                  <section class="features__list-slide" role="group"
+                    aria-roledescription="slide">
+                    <h3 class="features__list-title">App Features</h3>
+                    <ul class="features__list">
+                      <li>Custom Music Schedule</li>
+                      <li>Wake Up with Favorite Songs</li>
+                      <li>Home Detection Auto Wake Up</li>
+                      <li>Color “Amber”</li>
+                    </ul>
+                  </section>
+
+                  <section class="features__list-slide" role="group"
+                    aria-roledescription="slide">
+                    <h3 class="features__list-title">Sound &amp; Music</h3>
+                    <ul class="features__list">
+                      <li>Feel-in-chest Bass Power</li>
+                      <li>Lossless Digital Audio Transmission</li>
+                      <li>Easy &amp; Stable Stereo Pairing</li>
+                      <li>Crisp and Clear High Frequency Sound</li>
+                      <li>Streams from Cloud &amp; Local Library</li>
+                      <li>Auto Playback from Last Song Stopped</li>
+                    </ul>
+                  </section>
+                </div>
+              </div>
+
+              <!-- Controls (shown on tablet/mobile only) -->
+              <div class="features__controls" aria-hidden="true">
+                <button class="features__btn features__btn--prev" type="button"
+                  aria-label="Previous list">&laquo;</button>
+                <div class="features__fraction" aria-live="polite">
+                  <span class="features__current">01</span>
+                  <span class="features__sep">/</span>
+                  <span class="features__total">03</span>
+                </div>
+                <button class="features__btn features__btn--next" type="button"
+                  aria-label="Next list">&raquo;</button>
+              </div>
+            </div>
+            <div class="features__bg">
+              <img src="images/features-bg.jpg" alt="features"
+                  class="features__photo"
+                >
+            </div>
+          </div>
+        </section>
+
+        <!-- Form -->
+        <section class="form" aria-labelledby="form-title">
+          <div class="container">
+            <div class="form__left">
+              <h2 id="form-title" class="form__title">DO YOU HAVE ANY QUESTIONS?</h2>
+              <p>Write your question and we will contact you as soon as possible.</p>
+            </div>
+
+            <form class="form__right contact-form" action="#"
+              method="post">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="contact-form__input"
+                placeholder="Enter your email"
+                required
+              >
+              <textarea
+                id="message"
+                name="message"
+                class="contact-form__textarea"
+                placeholder="Your message..."
+                rows="6"
+                required
+                aria-required="true"
+              ></textarea>
+
+              <button type="submit" class="contact-form__submit">Send</button>
+            </form>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container">
+          <a href="#" class="footer__logo">
+            <img src="images/logo.svg" alt="Saund">
+          </a>
+
+          <ul class="footer__social">
+            <li class="footer__social-item">
+              <a href="#" aria-label="facebook"
+                class="footer__social-link">
+                <svg width="24" height="24"
+                  viewBox="0 0 24 24" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 13.5H16.5L17.5 9.5H14V7.5C14 6.47 14 5.5 16 5.5H17.5V2.14C17.174 2.097 15.943 2 14.643 2C11.928 2 10 3.657 10 6.7V9.5H7V13.5H10V22H14V13.5Z" fill="#F9512E"/>
+                </svg>
+              </a>
+            </li>
+            <li class="footer__social-item">
+              <a href="#" aria-label="facebook"
+                class="footer__social-link">
+                <svg width="24" height="24"
+                  viewBox="0 0 24 24" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C14.717 2 15.056 2.01 16.122 2.06C17.187 2.11 17.912 2.277 18.55 2.525C19.21 2.779 19.766 3.123 20.322 3.678C20.8305 4.1779 21.224 4.78259 21.475 5.45C21.722 6.087 21.89 6.813 21.94 7.878C21.987 8.944 22 9.283 22 12C22 14.717 21.99 15.056 21.94 16.122C21.89 17.187 21.722 17.912 21.475 18.55C21.2247 19.2178 20.8311 19.8226 20.322 20.322C19.822 20.8303 19.2173 21.2238 18.55 21.475C17.913 21.722 17.187 21.89 16.122 21.94C15.056 21.987 14.717 22 12 22C9.283 22 8.944 21.99 7.878 21.94C6.813 21.89 6.088 21.722 5.45 21.475C4.78233 21.2245 4.17753 20.8309 3.678 20.322C3.16941 19.8222 2.77593 19.2175 2.525 18.55C2.277 17.913 2.11 17.187 2.06 16.122C2.013 15.056 2 14.717 2 12C2 9.283 2.01 8.944 2.06 7.878C2.11 6.812 2.277 6.088 2.525 5.45C2.77524 4.78218 3.1688 4.17732 3.678 3.678C4.17767 3.16923 4.78243 2.77573 5.45 2.525C6.088 2.277 6.812 2.11 7.878 2.06C8.944 2.013 9.283 2 12 2ZM12 7C10.6739 7 9.40215 7.52678 8.46447 8.46447C7.52678 9.40215 7 10.6739 7 12C7 13.3261 7.52678 14.5979 8.46447 15.5355C9.40215 16.4732 10.6739 17 12 17C13.3261 17 14.5979 16.4732 15.5355 15.5355C16.4732 14.5979 17 13.3261 17 12C17 10.6739 16.4732 9.40215 15.5355 8.46447C14.5979 7.52678 13.3261 7 12 7ZM18.5 6.75C18.5 6.41848 18.3683 6.10054 18.1339 5.86612C17.8995 5.6317 17.5815 5.5 17.25 5.5C16.9185 5.5 16.6005 5.6317 16.3661 5.86612C16.1317 6.10054 16 6.41848 16 6.75C16 7.08152 16.1317 7.39946 16.3661 7.63388C16.6005 7.8683 16.9185 8 17.25 8C17.5815 8 17.8995 7.8683 18.1339 7.63388C18.3683 7.39946 18.5 7.08152 18.5 6.75ZM12 9C12.7956 9 13.5587 9.31607 14.1213 9.87868C14.6839 10.4413 15 11.2044 15 12C15 12.7956 14.6839 13.5587 14.1213 14.1213C13.5587 14.6839 12.7956 15 12 15C11.2044 15 10.4413 14.6839 9.87868 14.1213C9.31607 13.5587 9 12.7956 9 12C9 11.2044 9.31607 10.4413 9.87868 9.87868C10.4413 9.31607 11.2044 9 12 9Z" fill="#F9512E"/>
+                </svg>
+
+              </a>
+            </li>
+            <li class="footer__social-item">
+              <a href="#" aria-label="facebook"
+                class="footer__social-link">
+                <svg width="24" height="24"
+                  viewBox="0 0 24 24" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22.1623 5.65605C21.3989 5.99374 20.5893 6.21552 19.7603 6.31405C20.634 5.79148 21.288 4.96906 21.6003 4.00005C20.7803 4.48805 19.8813 4.83005 18.9443 5.01505C18.3149 4.34163 17.4807 3.89501 16.5713 3.74463C15.6618 3.59425 14.7282 3.74854 13.9156 4.1835C13.1029 4.61846 12.4567 5.30973 12.0774 6.14984C11.6981 6.98995 11.607 7.93183 11.8183 8.82905C10.1554 8.7457 8.52863 8.31357 7.04358 7.56071C5.55854 6.80785 4.24842 5.7511 3.1983 4.45905C2.82659 5.0975 2.63125 5.82328 2.6323 6.56205C2.6323 8.01205 3.3703 9.29305 4.4923 10.043C3.82831 10.0221 3.17893 9.84283 2.5983 9.52005V9.57205C2.5985 10.5377 2.93267 11.4737 3.54414 12.2211C4.15562 12.9686 5.00678 13.4815 5.9533 13.673C5.33691 13.8401 4.6906 13.8647 4.0633 13.745C4.33016 14.5763 4.8503 15.3032 5.55089 15.8242C6.25147 16.3451 7.09742 16.6338 7.9703 16.65C7.10278 17.3314 6.10947 17.835 5.04718 18.1322C3.98488 18.4294 2.87442 18.5143 1.7793 18.382C3.69099 19.6115 5.91639 20.2642 8.1893 20.262C15.8823 20.262 20.0893 13.889 20.0893 8.36205C20.0893 8.18205 20.0843 8.00005 20.0763 7.82205C20.8952 7.23022 21.6019 6.49707 22.1633 5.65705L22.1623 5.65605Z" fill="#F9512E"/>
+                </svg>
+              </a>
+            </li>
+          </ul>
+
+          <div class="footer__copyright">
+            &copy; 2019 All rights reserved. Terms of Use & Privacy Policy
+          </div>
+        </div>
+      </footer>
+    </div>
+
     <script src="scripts/main.js"></script>
   </body>
 </html>
