@@ -2,11 +2,37 @@
 
 const burger = document.querySelector('.header__burger');
 const nav = document.querySelector('.header__nav');
+const menuLinks = document.querySelectorAll('.header__nav a');
 
 burger.addEventListener('click', () => {
   burger.classList.toggle('active');
   nav.classList.toggle('active');
 });
+
+menuLinks.forEach((link) => {
+  link.addEventListener('click', () => {
+    if (burger.classList.contains('active')) {
+      burger.classList.remove('active');
+      nav.classList.remove('active');
+    }
+  });
+});
+
+const sections = document.querySelectorAll('.section');
+
+// eslint-disable-next-line no-undef
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  },
+  { threshold: 0.2 },
+);
+
+sections.forEach((section) => observer.observe(section));
 
 (function initTestimonials(selector = '.testimonials') {
   document.addEventListener('DOMContentLoaded', () => {
