@@ -1,5 +1,8 @@
 'use strict';
 
+/* ==============================
+   BURGER MENU
+============================== */
 const burger = document.querySelector('.header__burger');
 const nav = document.querySelector('.header__nav');
 const menuLinks = document.querySelectorAll('.header__nav a');
@@ -18,6 +21,9 @@ menuLinks.forEach((link) => {
   });
 });
 
+/* ==============================
+   SECTION OBSERVER (fade-in on scroll)
+============================== */
 const sections = document.querySelectorAll('.section');
 
 // eslint-disable-next-line no-undef
@@ -34,6 +40,9 @@ const observer = new IntersectionObserver(
 
 sections.forEach((section) => observer.observe(section));
 
+/* ==============================
+   TESTIMONIALS SLIDER
+============================== */
 (function initTestimonials(selector = '.testimonials') {
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll(selector).forEach(initOne);
@@ -61,10 +70,10 @@ sections.forEach((section) => observer.observe(section));
         .map(
           (s, i) =>
             `<button class="testimonials__dot" role="tab"
-                 aria-selected="${i === 0 ? 'true' : 'false'}"
+                 aria-selected="${i === 0}"
                  aria-controls="${s.id}" tabindex="${i === 0 ? 0 : -1}">
-           <span class="visually-hidden">Slide ${i + 1}</span>
-         </button>`,
+              <span class="visually-hidden">Slide ${i + 1}</span>
+            </button>`,
         )
         .join('');
     }
@@ -86,17 +95,14 @@ sections.forEach((section) => observer.observe(section));
 
       try {
         card.focus({ preventScroll: true });
-      } catch (_) {
+      } catch {
         card.focus();
       }
     }
 
     function setIndex(i, moveFocus = false) {
       index = clamp(i);
-
-      const offset = index * vw();
-
-      track.style.transform = `translateX(-${offset}px)`;
+      track.style.transform = `translateX(-${index * vw()}px)`;
 
       slides.forEach((slide, s) => {
         const active = s === index;
@@ -139,23 +145,19 @@ sections.forEach((section) => observer.observe(section));
 
       dot.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') {
-          e.preventDefault();
-          setIndex(index + 1, true);
+          return setIndex(index + 1, true);
         }
 
         if (e.key === 'ArrowLeft') {
-          e.preventDefault();
-          setIndex(index - 1, true);
+          return setIndex(index - 1, true);
         }
 
         if (e.key === 'Home') {
-          e.preventDefault();
-          setIndex(0, true);
+          return setIndex(0, true);
         }
 
         if (e.key === 'End') {
-          e.preventDefault();
-          setIndex(slides.length - 1, true);
+          return setIndex(slides.length - 1, true);
         }
       });
     });
@@ -187,11 +189,13 @@ sections.forEach((section) => observer.observe(section));
     }
 
     // Init
-    setIndex(0, false);
+    setIndex(0);
   }
 })();
 
-/* Features lists slider — mobile/tablet only */
+/* ==============================
+   FEATURES SLIDER (mobile/tablet only)
+============================== */
 (function initFeaturesSlider(
   rootSel = '.features',
   bpDesktop = '(min-width: 1024px)',
@@ -244,13 +248,10 @@ sections.forEach((section) => observer.observe(section));
         sl.setAttribute('aria-label', `${s + 1} of ${slides.length}`);
       });
 
-      if (prevBtn) {
-        prevBtn.disabled = index === 0;
-      }
-
-      if (nextBtn) {
-        nextBtn.disabled = index === slides.length - 1;
-      }
+      // eslint-disable-next-line no-unused-expressions
+      prevBtn && (prevBtn.disabled = index === 0);
+      // eslint-disable-next-line no-unused-expressions
+      nextBtn && (nextBtn.disabled = index === slides.length - 1);
 
       renderFraction();
 
@@ -274,13 +275,11 @@ sections.forEach((section) => observer.observe(section));
 
       // ensure proper transform baseline
       track.style.transform = 'translateX(0px)';
-      track.style.willChange = track.style.willChange || 'transform';
-
+      track.style.willChange = 'transform';
       prevBtn?.addEventListener('click', onPrev);
       nextBtn?.addEventListener('click', onNext);
       window.addEventListener('resize', onResize);
-
-      setIndex(0, false);
+      setIndex(0);
     }
 
     function unbind() {
@@ -295,8 +294,7 @@ sections.forEach((section) => observer.observe(section));
 
       // reset transforms so desktop layout shows three columns
       track.style.transform = 'none';
-      // eslint-disable-next-line max-len
-      slides.forEach((sl) => sl.classList.add('is-active')); // all visible conceptually
+      slides.forEach((sl) => sl.classList.add('is-active'));
       renderFraction();
     }
 
@@ -314,165 +312,70 @@ sections.forEach((section) => observer.observe(section));
 
     // responsive enable/disable
     function applyByMQ(e) {
-      if (e.matches) {
-        // desktop: disable slider
-        unbind();
-      } else {
-        // below desktop: enable slider
-        bind();
-      }
+      // eslint-disable-next-line no-unused-expressions
+      e.matches ? unbind() : bind();
     }
 
     // eslint-disable-next-line no-unused-expressions
-    mql.addEventListener
-      ? mql.addEventListener('change', applyByMQ)
-      : mql.addListener(applyByMQ); // legacy
-
-    // initial
+    mql.addEventListener?.('change', applyByMQ) || mql.addListener(applyByMQ);
     renderFraction();
     applyByMQ(mql);
   }
 })();
 
-/* Features lists slider — mobile/tablet only */
-(function initFeaturesSlider(
-  rootSel = '.features',
-  bpDesktop = '(min-width: 1024px)',
-) {
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll(rootSel).forEach(setup);
+/* ==============================
+   CONTACT FORM VALIDATION
+============================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contact-form');
+
+  if (!form) {
+    return;
+  }
+
+  const nameInput = form.querySelector('#name');
+  const emailInput = form.querySelector('#email');
+  const messageInput = form.querySelector('#message');
+  const errorName = document.getElementById('error-name');
+  const errorEmail = document.getElementById('error-email');
+  const errorMessage = document.getElementById('error-message');
+
+  form.addEventListener('submit', (e) => {
+    let valid = true;
+
+    [nameInput, emailInput, messageInput].forEach((el) => {
+      if (!el) {
+        return;
+      }
+      el.classList.remove('is-invalid');
+    });
+
+    [errorName, errorEmail, errorMessage].forEach(
+      (el) => (el.textContent = ''),
+    );
+
+    if (!nameInput.value.trim()) {
+      valid = false;
+      nameInput.classList.add('is-invalid');
+      errorName.textContent = 'Please enter your name.';
+    }
+
+    const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+    if (!emailPattern.test(emailInput.value.trim())) {
+      valid = false;
+      emailInput.classList.add('is-invalid');
+      errorEmail.textContent = 'Please enter a valid email.';
+    }
+
+    if (messageInput.value.trim().length < 5) {
+      valid = false;
+      messageInput.classList.add('is-invalid');
+      errorMessage.textContent = 'Message should be at least 5 characters.';
+    }
+
+    if (!valid) {
+      e.preventDefault();
+    }
   });
-
-  function setup(root) {
-    const viewport = root.querySelector('.features__viewport');
-    const track = root.querySelector('.features__track');
-    const slides = Array.from(root.querySelectorAll('.features__list-slide'));
-    const prevBtn = root.querySelector('.features__btn--prev');
-    const nextBtn = root.querySelector('.features__btn--next');
-    const currentEl = root.querySelector('.features__current');
-    const totalEl = root.querySelector('.features__total');
-
-    if (!viewport || !track || slides.length < 2) {
-      return;
-    }
-
-    // state
-    let index = 0;
-    let enabled = false;
-    const mql = window.matchMedia(bpDesktop);
-
-    // format helpers
-    const pad2 = (n) => String(n).padStart(2, '0');
-    const vw = () => viewport.clientWidth;
-
-    function renderFraction() {
-      if (currentEl) {
-        currentEl.textContent = pad2(enabled ? index + 1 : 1);
-      }
-
-      if (totalEl) {
-        totalEl.textContent = pad2(slides.length);
-      }
-    }
-
-    function setIndex(i, focusCard = false) {
-      index = Math.max(0, Math.min(i, slides.length - 1));
-      track.style.transform = `translateX(-${index * vw()}px)`;
-
-      slides.forEach((sl, s) => {
-        const active = s === index;
-
-        sl.classList.toggle('is-active', active);
-        sl.setAttribute('aria-hidden', String(!active));
-        sl.setAttribute('aria-label', `${s + 1} of ${slides.length}`);
-      });
-
-      if (prevBtn) {
-        prevBtn.disabled = index === 0;
-      }
-
-      if (nextBtn) {
-        nextBtn.disabled = index === slides.length - 1;
-      }
-
-      renderFraction();
-
-      if (focusCard) {
-        const card =
-          slides[index].querySelector('.features__list-title') || slides[index];
-
-        try {
-          card.focus?.({ preventScroll: true });
-        } catch {
-          card.focus?.();
-        }
-      }
-    }
-
-    function bind() {
-      if (enabled) {
-        return;
-      }
-      enabled = true;
-
-      // ensure proper transform baseline
-      track.style.transform = 'translateX(0px)';
-      track.style.willChange = track.style.willChange || 'transform';
-
-      prevBtn?.addEventListener('click', onPrev);
-      nextBtn?.addEventListener('click', onNext);
-      window.addEventListener('resize', onResize);
-
-      setIndex(0, false);
-    }
-
-    function unbind() {
-      if (!enabled) {
-        return;
-      }
-      enabled = false;
-
-      prevBtn?.removeEventListener('click', onPrev);
-      nextBtn?.removeEventListener('click', onNext);
-      window.removeEventListener('resize', onResize);
-
-      // reset transforms so desktop layout shows three columns
-      track.style.transform = 'none';
-      // eslint-disable-next-line max-len
-      slides.forEach((sl) => sl.classList.add('is-active')); // all visible conceptually
-      renderFraction();
-    }
-
-    function onPrev() {
-      setIndex(index - 1, true);
-    }
-
-    function onNext() {
-      setIndex(index + 1, true);
-    }
-
-    function onResize() {
-      setIndex(index, false);
-    }
-
-    // responsive enable/disable
-    function applyByMQ(e) {
-      if (e.matches) {
-        // desktop: disable slider
-        unbind();
-      } else {
-        // below desktop: enable slider
-        bind();
-      }
-    }
-
-    // eslint-disable-next-line no-unused-expressions
-    mql.addEventListener
-      ? mql.addEventListener('change', applyByMQ)
-      : mql.addListener(applyByMQ); // legacy
-
-    // initial
-    renderFraction();
-    applyByMQ(mql);
-  }
-})();
+});

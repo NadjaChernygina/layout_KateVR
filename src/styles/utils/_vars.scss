@@ -1,5 +1,7 @@
-$c-gray: #7C7C7C;
+$c-gray: #eee;
 $color-white:#fff;
+$color-black:#000;
+$color-error: #d93025;
 $primary-color: #4548ED;
 $secondary-color: #0C797A;
 $primary-color--hover: #7071ac;
@@ -7,20 +9,22 @@ $secondary-color--hover: #CFEFF0;
 
 $table-min-width: 576px;
 $desktop-min-width: 1024px;
-$effectDuration: 0.3s;
+$effectDuration: 0.8s;
+$effectSlowDuration: 2s;
 $social-color: $secondary-color;
 $social-color-hover: $primary-color;
 $main-text-color: #292929;
-$link-color-hover: #7c7a7a;
+
+$primary-link-color: $secondary-color;
+$primary-link-color-hover: #113637;
+$secondary-link-color: #0DB2B3;
+$secondary-link-color-hover: #0DB2B3;
+
 $text-font-size: 16px;
 $text-line-height: 140%;
 $text-font-size-sm: 12px;
 $primary-font-family: "Sometype Mono", monospace;
 $secondary-font-family: "Inter", sans-serif;
-$title-font-size: 16px;
-$title-line-height: 140%;
-$menu-background-color: #e5e6e8;
-$border-radius: 8px;
 $quote-text-size: 24px;
 
 $text-font-sizes: (
@@ -165,3 +169,9 @@ $button-variants: (
 );
 
 
+@keyframes fadeInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

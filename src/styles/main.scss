@@ -1,10 +1,10 @@
 @import 'utils';
 
 html {
+  color: $main-text-color;
   font-family: $primary-font-family;
   font-weight: 400;
   font-style: normal;
-  color: $main-text-color;
   font-size: $text-font-size;
   line-height: $text-line-height;
 
@@ -31,10 +31,10 @@ li {
 }
 
 a {
-  color: inherit;
+  color: $primary-link-color;
 
   &:hover {
-    color: $link-color-hover;
+    color: $primary-link-color-hover;
   }
 }
 
@@ -83,9 +83,8 @@ img {
 }
 
 .header {
-  background: #fff;
-  padding: 16px 24px;
-  border-bottom: 1px solid #eee;
+  padding: 16px 30px;
+  border-bottom: 1px solid $c-gray;
 
   .container {
     @include flex-between-center;
@@ -116,24 +115,37 @@ img {
     }
 
     &--lang {
-      @include flex-between-center;
-      justify-content: right;
+      position: relative;
+      display: grid;
+      grid-auto-flow: column;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid #cfd6de;
+      border-radius: 999px;
+      background: #fff;
+      isolation: isolate; /* keep pill under links */
+      list-style: none;
+      margin: 0;
 
-      li {
-        &::before {
-          content: '/';
-          margin: 0 3px;
-        }
+      li { display: contents; }
 
-        &:first-child {
-          &::before {
-            display: none;
-          }
-        }
+       a {
+        position: relative;
+        z-index: 1;
+        min-width: 44px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-weight: 600;
+        text-decoration: none;
+        color: #111;
+        text-align: center;
+        cursor: pointer;
+      }
 
-        a {
-          text-decoration: none;
-        }
+      a.is-active {
+        color: #fff;
+        background: #0b7767;
+        border-radius: 999px;
       }
     }
   }
@@ -295,7 +307,7 @@ img {
 .section {
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.8s ease;
+  transition: opacity $effectDuration ease, transform $effectDuration ease;
 }
 .section.visible {
   opacity: 1;
@@ -320,7 +332,7 @@ img {
     }
   }
 
-  padding: 40px 30px 60px;
+  padding: 40px 30px;
 
   &__item {
     text-align: center;
@@ -389,6 +401,13 @@ img {
 
   &__media {
     grid-area: media;
+    transition: transform $effectDuration ease, box-shadow $effectDuration ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 24px rgba(0,0,0,.3);
+    }
   }
 
   &__img {
@@ -398,19 +417,43 @@ img {
     object-fit: cover;
   }
 
-  .about__title {
+  &__title {
     grid-area: title;
     margin: 0;
+    opacity: 0;
+    transform: translateX(-120px);
+    animation: fadeInLeft $effectSlowDuration ease forwards;
   }
 
-  .about__text {
+  &__text {
     grid-area: text;
     margin: 0;
   }
 
-  .about__link {
+  &__link {
     grid-area: link;
     justify-self: start;
+    color: $secondary-link-color;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+
+    &::after {
+      content: '';
+      width: 30%;
+      height: 2px;
+      display: block;
+      background-color: $secondary-link-color;
+      transition: width $effectDuration ease;
+    }
+
+    &:hover {
+      color: $secondary-link-color-hover;
+
+      &::after {
+        width: 90%;
+      }
+    }
 
     @include on-tablet {
       margin-top: 8px;
@@ -433,7 +476,7 @@ img {
 
   @include on-desktop {
     background-size: auto;
-    padding: 100px 40px;
+    padding: 80px 40px 60px;
   }
 
 
@@ -505,7 +548,7 @@ img {
   }
 
   &__role {
-    color: $c-gray;
+    color: $secondary-color;
     font-size: 14px;
   }
 
@@ -549,7 +592,7 @@ img {
    features
 ======================== */
 .features {
-  padding: 80px 30px;
+  padding: 40px 30px;
 
   .container {
     display: grid;
@@ -685,7 +728,7 @@ img {
 /* ========================
    FORM
 ======================== */
-.form {
+.form-section {
   padding: 40px 30px;
 
   .container {
@@ -733,6 +776,15 @@ img {
     font-family: $primary-font-family;
     font-size: $text-font-size;
     line-height: 1.4;
+    resize: none;
+    width: 100%;
+    transition: border-color $effectDuration, box-shadow $effectDuration;
+
+    &:focus {
+      border-color: $secondary-color;
+      box-shadow: 0 0 0 3px rgba(11, 119, 103, .2);
+      outline: none;
+    }
 
     &__textarea {
       min-height: 140px;
@@ -773,6 +825,26 @@ img {
 
     @include button-styles(primary);
   }
+
+  &__error {
+    display: block;
+    color: $color-error;
+    font-size: 14px;
+    margin: 0 0 10px;
+    min-height: 18px;
+  }
+}
+
+/* error animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.is-invalid {
+  border-color: $color-error !important;
+  animation: shake $effectDuration;
 }
 
 /* ========================

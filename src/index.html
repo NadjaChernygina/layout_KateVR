@@ -19,6 +19,7 @@
   </head>
   <body>
     <div class="wrapper">
+      <!-- Header -->
       <header class="header">
         <div class="container">
           <a href="#" class="header__logo">
@@ -27,9 +28,17 @@
 
           <div class="header__right">
             <div class="header__links">
-              <ul class="header__links--lang">
-                <li><a href="#">EN</a></li>
-                <li><a href="#">UA</a></li>
+              <ul class="header__links--lang" role="group"
+                aria-label="Language switch">
+                <li>
+                  <a href="#" class="is-active"
+                  data-lang="en" aria-pressed="true">EN</a>
+                </li>
+                <li>
+                  <a href="#" data-lang="ua"
+                  aria-pressed="false">UA</a>
+                </li>
+                <span class="lang-pill" aria-hidden="true"></span>
               </ul>
               <button class="button button--secondary" type="button">Buy</button>
             </div>
@@ -53,9 +62,17 @@
                 </ul>
 
                 <div class="header__links">
-                  <ul class="header__links--lang">
-                    <li><a href="#">EN</a></li>
-                    <li><a href="#">UA</a></li>
+                  <ul class="header__links--lang" role="group"
+                    aria-label="Language switch">
+                    <li>
+                      <a href="#" class="is-active"
+                      data-lang="en" aria-pressed="true">EN</a>
+                    </li>
+                    <li>
+                      <a href="#" data-lang="ua"
+                      aria-pressed="false">UA</a>
+                    </li>
+                    <span class="lang-pill" aria-hidden="true"></span>
                   </ul>
 
                   <button class="button button--secondary" type="button">Buy</button>
@@ -67,7 +84,7 @@
       </header>
 
       <main>
-        <!-- 1. Banner -->
+        <!-- Banner -->
         <section class="section banner">
           <div class="container">
             <div class="banner__text">
@@ -89,7 +106,7 @@
           </div>
         </section>
 
-        <!-- 2. Featured blocks -->
+        <!-- Featured blocks -->
         <section id="ourstory" class="section featuredblocks">
           <div class="container">
             <div class="featuredblocks__item">
@@ -119,13 +136,13 @@
           </div>
         </section>
 
-        <!-- 3. Fullscreen image -->
+        <!-- Fullscreen image -->
         <section class="section fullimage">
           <img src="images/fullwidth.jpg" alt="Full width section"
             class="fullimage__img">
         </section>
 
-        <!-- 4. About Us -->
+        <!-- About Us -->
         <section id="about" class="section about">
           <div class="container">
             <article class="about__item">
@@ -217,10 +234,6 @@
           </div>
         </section>
 
-
-
-
-
         <!-- Features -->
         <section id="features" class="section features">
           <div class="container">
@@ -296,7 +309,7 @@
         </section>
 
         <!-- Form -->
-        <section id="contactus" class="section form"
+        <section id="contactus" class="section form-section"
           aria-labelledby="form-title">
           <div class="container">
             <div class="form__left">
@@ -304,8 +317,18 @@
               <p>Write your question and we will contact you as soon as possible.</p>
             </div>
 
-            <form class="form__right contact-form" action="#"
-              method="post">
+            <form class="form__right contact-form" id="contact-form"
+              novalidate>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="contact-form__input"
+                placeholder="Enter your name"
+                required
+              >
+              <span class="contact-form__error" id="error-name"></span>
+
               <input
                 type="email"
                 id="email"
@@ -314,6 +337,8 @@
                 placeholder="Enter your email"
                 required
               >
+              <span class="contact-form__error" id="error-email"></span>
+
               <textarea
                 id="message"
                 name="message"
@@ -323,6 +348,7 @@
                 required
                 aria-required="true"
               ></textarea>
+              <span class="contact-form__error" id="error-message"></span>
 
               <button type="submit" class="contact-form__submit">Send</button>
             </form>
