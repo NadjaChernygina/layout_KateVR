@@ -309,6 +309,34 @@ sections.forEach((section) => observer.observe(section));
       prevBtn?.addEventListener('click', onPrev);
       nextBtn?.addEventListener('click', onNext);
       window.addEventListener('resize', onResize);
+
+      // --- swipe support ---
+      let startX = 0;
+      let deltaX = 0;
+
+      function onTouchStart(e) {
+        startX = e.touches[0].clientX;
+      }
+
+      function onTouchMove(e) {
+        deltaX = e.touches[0].clientX - startX;
+      }
+
+      function onTouchEnd() {
+        if (Math.abs(deltaX) > 50) {
+          if (deltaX > 0) {
+            onPrev();
+          } else {
+            onNext();
+          }
+        }
+        deltaX = 0;
+      }
+
+      viewport.addEventListener('touchstart', onTouchStart, { passive: true });
+      viewport.addEventListener('touchmove', onTouchMove, { passive: true });
+      viewport.addEventListener('touchend', onTouchEnd);
+
       setIndex(0);
     }
 
@@ -321,6 +349,14 @@ sections.forEach((section) => observer.observe(section));
       prevBtn?.removeEventListener('click', onPrev);
       nextBtn?.removeEventListener('click', onNext);
       window.removeEventListener('resize', onResize);
+
+      // знімаємо свайп
+      // eslint-disable-next-line no-undef
+      viewport.removeEventListener('touchstart', onTouchStart);
+      // eslint-disable-next-line no-undef
+      viewport.removeEventListener('touchmove', onTouchMove);
+      // eslint-disable-next-line no-undef
+      viewport.removeEventListener('touchend', onTouchEnd);
 
       // reset transforms so desktop layout shows three columns
       track.style.transform = 'none';
