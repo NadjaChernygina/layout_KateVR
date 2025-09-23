@@ -563,6 +563,7 @@ img {
   &__dot {
     width: 10px;
     height: 10px;
+    padding: 0;
     border-radius: 50%;
     background: $secondary-color;
     border: none;
@@ -666,26 +667,30 @@ img {
   }
 
   &__btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 999px;
-    border: 1px solid #cfd6de;
-    background: #fff;
     cursor: pointer;
-    display: grid;
-    place-items: center;
-    font-size: 18px;
-    line-height: 1;
-  }
+    border: none;
+    background: none;
+    &--next{
+      transform: rotate(180deg);
 
-  &__btn[disabled] {
-    opacity: .4;
-    cursor: default;
+      svg {
+        path {
+          fill: $color-black;
+        }
+      }
+    }
+
+    &:hover {
+      svg {
+        path {
+          fill: $secondary-color;
+        }
+      }
+    }
   }
 
   &__fraction {
     font-variant-numeric: tabular-nums;
-    letter-spacing: .06em;
   }
 
   &__bg {
@@ -814,6 +819,8 @@ img {
     appearance: none;
     -webkit-appearance: none;
     padding: $button-padding;
+    margin: 0 auto;
+    display: block;
     font-size: $text-font-size-sm;
     font-weight: 500;
     text-transform: uppercase;
@@ -821,9 +828,12 @@ img {
     min-height: $button-min-height;
     cursor: pointer;
     transition: background-color $effectDuration ease;
-    align-self: flex-start;
 
     @include button-styles(primary);
+
+    @include on-tablet {
+      margin: 0;
+    }
   }
 
   &__error {

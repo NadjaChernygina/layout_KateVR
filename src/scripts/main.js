@@ -139,6 +139,36 @@ sections.forEach((section) => observer.observe(section));
       }
     }
 
+    // --- Swipe support (touch devices)
+    let startX = 0;
+    let deltaX = 0;
+    const threshold = 50;
+
+    viewport.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        startX = e.touches[0].clientX;
+        deltaX = 0;
+      }
+    });
+
+    viewport.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 1) {
+        deltaX = e.touches[0].clientX - startX;
+      }
+    });
+
+    viewport.addEventListener('touchend', () => {
+      if (Math.abs(deltaX) > threshold) {
+        if (deltaX > 0) {
+          setIndex(index - 1, true);
+        } else {
+          setIndex(index + 1, true);
+        }
+      }
+      startX = 0;
+      deltaX = 0;
+    });
+
     // Bullet interactions
     dots.forEach((dot, i) => {
       dot.addEventListener('click', () => setIndex(i, true));
